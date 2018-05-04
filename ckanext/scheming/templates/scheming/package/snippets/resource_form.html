@@ -16,6 +16,16 @@
     might not be compatible with ckanext-scheming
     </p>
   {%- endif -%}
+
+  {%- if not profiles -%}
+    <p>
+    profiles not passed to template. your version of CKAN
+    might not be compatible with ckanext-scheming
+    </p>
+  {%- endif -%}
+
+  {% set profiles_list = profiles.split(' ') %}
+
   {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
   {%- for field in schema.resource_fields -%}
     {%- snippet 'scheming/snippets/form_field.html',
