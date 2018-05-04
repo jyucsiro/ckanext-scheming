@@ -17,6 +17,8 @@
     </p>
   {%- endif -%}
 
+  {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+  {%- set profiles = schema.profiles -%}
   {%- if not profiles -%}
     <p>
     profiles not passed to template. your version of CKAN
@@ -26,7 +28,6 @@
 
   {% set profiles_list = profiles.split(' ') %}
 
-  {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
   {%- for field in schema.resource_fields -%}
     {%- snippet 'scheming/snippets/form_field.html',
       field=field, data=data, errors=errors,
