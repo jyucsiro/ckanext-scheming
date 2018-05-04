@@ -16,6 +16,13 @@
     might not be compatible with ckanext-scheming
     </p>
   {%- endif -%}
+
+  {% set dataset_type_list = dataset_type.split(' ') %}
+
+  {%- if 'resource_groups' in dataset_type_list -%}
+     <p>resource_groups</p>
+  {%- endif -%}
+
   {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
   {%- for field in schema.resource_fields -%}
     {%- snippet 'scheming/snippets/form_field.html',
